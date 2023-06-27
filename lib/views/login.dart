@@ -101,20 +101,6 @@ class MyCustomFormState extends State<MyCustomForm> {
                     onPressed: _submitForm,
                     child: const Text('Login'),
                   ),
-                  const SizedBox(height: 8),
-                  GestureDetector(
-                    onTap: () {
-                      // Handle Facebook button tapped
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Facebook button tapped')),
-                      );
-                    },
-                    child: Image.asset(
-                      'assets/Logo_de_Facebook.png', // Replace with your Facebook logo image path
-                      width: 48,
-                      height: 48,
-                    ),
-                  ),
                 ],
               ),
             ),
