@@ -74,7 +74,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                     );
                   },
                   child: Image.asset(
-                    'assets/Logo_de_Facebook.pngz', // Replace with your Facebook logo image path
+                    'assets/Logo_de_Facebook.png', // Replace with your Facebook logo image path
                     width: 48,
                     height: 48,
                   ),
