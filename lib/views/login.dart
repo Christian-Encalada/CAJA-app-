@@ -47,7 +47,7 @@ class MyCustomFormState extends State<MyCustomForm> {
 
       // Show a snackbar to indicate successful login
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Login successful')),
+        const SnackBar(content: Text('Se a logueado correctamente')),
       );
     }
   }
@@ -65,11 +65,11 @@ class MyCustomFormState extends State<MyCustomForm> {
               controller: _usernameController,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
-                hintText: 'Enter your username',
+                hintText: 'Escriba su usuario',
               ),
               validator: (value) {
                 if (value!.isEmpty) {
-                  return 'Please enter your username.';
+                  return 'Por favor escriba su usuario.';
                 }
                 return null;
               },
@@ -82,11 +82,11 @@ class MyCustomFormState extends State<MyCustomForm> {
               obscureText: true,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: 'Enter your password',
+                labelText: 'Escriba su contraseña',
               ),
               validator: (value) {
                 if (value!.isEmpty) {
-                  return 'Please enter your password.';
+                  return 'Por favor escriba su contraseña.';
                 }
                 return null;
               },
@@ -99,7 +99,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                 children: [
                   ElevatedButton(
                     onPressed: _submitForm,
-                    child: const Text('Submit'),
+                    child: const Text('Login'),
                   ),
                   const SizedBox(height: 8),
                   GestureDetector(
