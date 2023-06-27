@@ -1,4 +1,4 @@
-package com.devel.pucem.hdt_flutter
+package com.example.caja_flutter
 
 import io.flutter.embedding.android.FlutterActivity
 
