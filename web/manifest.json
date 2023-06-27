@@ -1,6 +1,6 @@
 {
-    "name": "hdt_flutter",
-    "short_name": "hdt_flutter",
+    "name": "caja_flutter",
+    "short_name": "caja_flutter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
