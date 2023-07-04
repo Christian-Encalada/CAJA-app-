@@ -47,7 +47,7 @@ class MyCustomFormState extends State<MyCustomForm> {
 
       // Show a snackbar to indicate successful login
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Se a logueado correctamente')),
+        const SnackBar(content: Text('Se ha logueado correctamente')),
       );
     }
   }
@@ -100,6 +100,18 @@ class MyCustomFormState extends State<MyCustomForm> {
                   ElevatedButton(
                     onPressed: _submitForm,
                     child: const Text('Login'),
+                  ),
+                  const SizedBox(height: 20),
+                  Image.asset(
+                      'assets/gogle.png', // Ruta de la imagen relativa a la carpeta "assets"
+                      width: 100,
+                      height: 100,
+                    ),
+
+                  Image.asset(
+                    'assets/face.png', // Ruta de la imagen relativa a la carpeta "assets"
+                    width: 100,
+                    height: 100,
                   ),
                 ],
               ),
