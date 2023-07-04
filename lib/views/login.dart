@@ -103,11 +103,10 @@ class MyCustomFormState extends State<MyCustomForm> {
                   ),
                   const SizedBox(height: 20),
                   Image.asset(
-                      'assets/gogle.png', // Ruta de la imagen relativa a la carpeta "assets"
-                      width: 100,
-                      height: 100,
-                    ),
-
+                    'assets/gogle.png', // Ruta de la imagen relativa a la carpeta "assets"
+                    width: 100,
+                    height: 100,
+                  ),
                   Image.asset(
                     'assets/face.png', // Ruta de la imagen relativa a la carpeta "assets"
                     width: 100,
