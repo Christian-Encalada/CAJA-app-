@@ -24,59 +24,49 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class MyAppLogo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 0, left: 0),
+      child: Image.asset(
+        'assets/IDENTIDAD - simbolo transparente_Mesa de trabajo 1.png', // Ruta de la imagen relativa a la carpeta "assets"
+        width: 80,
+        height: 80,
+      ),
+    );
+  }
+}
+
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Bienvenido a CAJA'),
-        backgroundColor: Colors.white, // Fondo blanco para el AppBar
-        foregroundColor: Colors.black, // Texto negro para el AppBar
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Bienvenido a CAJA',
-              style: TextStyle(fontSize: 24),
-            ),
-            SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/login');
-              },
-              child: Text('Iniciar sesión'),
-            ),
-            SizedBox(height: 15),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/register');
-              },
-              child: Text('Registrarse'),
-            ),
-          ],
-        ),
+      body: Stack(
+        children: [
+          Positioned(
+            top: 0,
+            left: 0,
+            child: MyAppLogo(),
+          ),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: Colors.black), // Icono en color negro
+            icon: Icon(Icons.home, color: Colors.black),
             label: 'Inicio',
           ),
           BottomNavigationBarItem(
-            icon:
-                Icon(Icons.search, color: Colors.black), // Icono en color negro
+            icon: Icon(Icons.search, color: Colors.black),
             label: 'Buscar',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart,
-                color: Colors.black), // Icono en color negro
+            icon: Icon(Icons.shopping_cart, color: Colors.black),
             label: 'Carrito',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite,
-                color: Colors.black), // Icono en color negro
+            icon: Icon(Icons.favorite, color: Colors.black),
             label: 'Favoritos',
           ),
         ],
@@ -89,11 +79,6 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Iniciar sesión'),
-        backgroundColor: Colors.white, // Fondo blanco para el AppBar
-        foregroundColor: Colors.black, // Texto negro para el AppBar
-      ),
       body: Center(
         child: Text('Página de inicio de sesión'),
       ),
@@ -105,11 +90,6 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Registrarse'),
-        backgroundColor: Colors.white, // Fondo blanco para el AppBar
-        foregroundColor: Colors.black, // Texto negro para el AppBar
-      ),
       body: Center(
         child: Text('Página de registro'),
       ),
