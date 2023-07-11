@@ -1,9 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+@RoutePage()
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
+class LoginRoute extends StatelessWidget {
+  const LoginRoute({Key? key});
 
   @override
   Widget build(BuildContext context) {
