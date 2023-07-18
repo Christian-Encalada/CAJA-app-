@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+import '../routes/app_routes.gr.dart';
 
 @RoutePage()
-
 class LoginRoute extends StatelessWidget {
   const LoginRoute({Key? key});
 
@@ -37,19 +39,55 @@ class MyCustomFormState extends State<MyCustomForm> {
     super.dispose();
   }
 
-  void _submitForm() {
+  Future<bool> login(String username, String password) async {
+    final url = 'http://127.0.0.1:8000/api/login/'; // Reemplaza esta URL por la URL de tu API de inicio de sesión en Django
+    final response = await http.post(
+      Uri.parse(url),
+      body: {
+        'username': username,
+        'password': password,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      // Si la respuesta del servidor es exitosa (código 200), el inicio de sesión fue exitoso
+      // Puedes verificar la respuesta del servidor si contiene algún dato adicional relacionado con el usuario
+      return true;
+    } else {
+      // Si la respuesta del servidor no es exitosa, el inicio de sesión falló
+      return false;
+    }
+  }
+
+  void _submitForm() async {
     if (_formKey.currentState!.validate()) {
-      // Form is valid, proceed with login logic
       final username = _usernameController.text;
       final password = _passwordController.text;
 
-      // Here, you can implement your login logic
-      // For example, you can make an API request to verify the credentials
-
-      // Show a snackbar to indicate successful login
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Se ha logueado correctamente')),
+      // Realiza una solicitud HTTP POST a la URL de inicio de sesión
+      final response = await http.post(
+        Uri.parse('http://127.0.0.1:8000/api/login/'),
+        body: {
+          'username': username,
+          'password': password,
+        },
       );
+
+      // Verifica la respuesta del servidor y muestra una notificación o realiza acciones en función de la respuesta.
+      if (response.statusCode == 200) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Inicio de sesión exitoso')),
+        );
+
+        // Aquí podrías guardar el token de autenticación o realizar alguna acción adicional después del inicio de sesión exitoso.
+
+        // Luego de mostrar la notificación, navegamos a la siguiente ruta Pepe
+        context.router.push(const Pepe());
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: ${response.body}')),
+        );
+      }
     }
   }
 
@@ -100,19 +138,21 @@ class MyCustomFormState extends State<MyCustomForm> {
                 children: [
                   ElevatedButton(
                     onPressed: _submitForm,
-                    child: const Text('Login'),
+                    child: const Text('LOGIN'),
                   ),
                   const SizedBox(height: 20),
-                  Image.asset(
-                    'assets/gogle.png', // Ruta de la imagen relativa a la carpeta "assets"
-                    width: 100,
-                    height: 100,
-                  ),
-                  Image.asset(
-                    'assets/face.png', // Ruta de la imagen relativa a la carpeta "assets"
-                    width: 100,
-                    height: 100,
-                  ),
+                  // Aquí puedes agregar tus imágenes de Google y Facebook si lo deseas.
+                  // Asegúrate de agregar las imágenes en la carpeta "assets" de tu proyecto y actualizar la ruta aquí.
+                  // Image.asset(
+                  //   'assets/google.png',
+                  //   width: 100,
+                  //   height: 100,
+                  // ),
+                  // Image.asset(
+                  //   'assets/facebook.png',
+                  //   width: 100,
+                  //   height: 100,
+                  // ),
                 ],
               ),
             ),

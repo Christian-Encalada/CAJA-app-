@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:caja_flutter/routes/app_routes.gr.dart';
 import 'package:caja_flutter/routes/guard/auth_guard.dart';
-import 'app_routes.gr.dart';
 
 @AutoRouterConfig()
 class AppRouter extends $AppRouter {
@@ -11,6 +10,9 @@ class AppRouter extends $AppRouter {
         AutoRoute(path: '/', page: Homepage.page, initial: true),
         AutoRoute(path: '/login', page: LoginRoute.page, keepHistory: false),
         AutoRoute(
-            path: '/register', page: RegisterRoute.page, guards: [AuthGuard()])
+            path: '/register', page: RegisterRoute.page, guards: [AuthGuard()]),
+        AutoRoute(
+            path: '/pepe', page: Pepe.page),
+
       ];
 }
