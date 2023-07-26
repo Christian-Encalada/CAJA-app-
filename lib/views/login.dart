@@ -40,7 +40,7 @@ class MyCustomFormState extends State<MyCustomForm> {
   }
 
   Future<bool> login(String username, String password) async {
-    final url = 'http://127.0.0.1:8000/api/login/'; // Reemplaza esta URL por la URL de tu API de inicio de sesión en Django
+    const url = 'http://127.0.0.1:8000/accounts/login/'; // Cambiar a la URL correcta de inicio de sesión en Django
     final response = await http.post(
       Uri.parse(url),
       body: {
@@ -50,11 +50,10 @@ class MyCustomFormState extends State<MyCustomForm> {
     );
 
     if (response.statusCode == 200) {
-      // Si la respuesta del servidor es exitosa (código 200), el inicio de sesión fue exitoso
-      // Puedes verificar la respuesta del servidor si contiene algún dato adicional relacionado con el usuario
+      // Inicio de sesión exitoso
       return true;
     } else {
-      // Si la respuesta del servidor no es exitosa, el inicio de sesión falló
+      // Inicio de sesión fallido
       return false;
     }
   }
@@ -64,28 +63,32 @@ class MyCustomFormState extends State<MyCustomForm> {
       final username = _usernameController.text;
       final password = _passwordController.text;
 
-      // Realiza una solicitud HTTP POST a la URL de inicio de sesión
-      final response = await http.post(
-        Uri.parse('http://127.0.0.1:8000/api/login/'),
-        body: {
-          'username': username,
-          'password': password,
-        },
-      );
-
-      // Verifica la respuesta del servidor y muestra una notificación o realiza acciones en función de la respuesta.
-      if (response.statusCode == 200) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Inicio de sesión exitoso')),
+      try {
+        final response = await http.post(
+          Uri.parse('http://127.0.0.1:8000/accounts/login/'),
+          body: {
+            'username': username,
+            'password': password,
+          },
         );
 
-        // Aquí podrías guardar el token de autenticación o realizar alguna acción adicional después del inicio de sesión exitoso.
+        if (response.statusCode == 200) {
+          // Inicio de sesión exitoso
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Inicio de sesión exitoso')),
+          );
 
-        // Luego de mostrar la notificación, navegamos a la siguiente ruta Pepe
-        context.router.push(const Pepe());
-      } else {
+          // Aquí podrías guardar el token de autenticación o realizar alguna acción adicional después del inicio de sesión exitoso.
+        } else {
+          // Inicio de sesión fallido
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Error: Usuario no registrado o credenciales incorrectas')),
+          );
+        }
+      } catch (e) {
+        print('Error en la solicitud HTTP: $e');
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: ${response.body}')),
+          SnackBar(content: Text('Error en la solicitud HTTP: $e')),
         );
       }
     }
@@ -143,16 +146,16 @@ class MyCustomFormState extends State<MyCustomForm> {
                   const SizedBox(height: 20),
                   // Aquí puedes agregar tus imágenes de Google y Facebook si lo deseas.
                   // Asegúrate de agregar las imágenes en la carpeta "assets" de tu proyecto y actualizar la ruta aquí.
-                  // Image.asset(
-                  //   'assets/google.png',
-                  //   width: 100,
-                  //   height: 100,
-                  // ),
-                  // Image.asset(
-                  //   'assets/facebook.png',
-                  //   width: 100,
-                  //   height: 100,
-                  // ),
+                  Image.asset(
+                     'assets/gogle.png',
+                    width: 100,
+                  height: 100,
+                   ),
+                   Image.asset(
+                    'assets/face.png',
+                    width: 100,
+                    height: 100,
+                  ),
                 ],
               ),
             ),

@@ -9,10 +9,9 @@ class AppRouter extends $AppRouter {
         /// routes go here
         AutoRoute(path: '/', page: Homepage.page, initial: true),
         AutoRoute(path: '/login', page: LoginRoute.page, keepHistory: false),
-        AutoRoute(
-            path: '/register', page: RegisterRoute.page, guards: [AuthGuard()]),
-        AutoRoute(
-            path: '/pepe', page: Pepe.page),
-
+        AutoRoute(path: '/register', page: RegisterRoute.page),
+        AutoRoute(path: '/pepe', page: Pepe.page),
       ];
+
+  get routerDelegate => null;
 }

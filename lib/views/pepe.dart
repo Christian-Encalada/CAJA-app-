@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:auto_route/auto_route.dart';
-
-@RoutePage()
 
 class Pepe extends StatelessWidget {
   const Pepe({Key? key});
